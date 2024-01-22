@@ -1,1 +1,11 @@
 1 git:
+2 config:
+  - repo/ file for common properties (cloud server?)
+
+wishlist:
+  microservices:
+    - notification-service:
+        - send emails
+        - send sms
+    - present-service:
+        - save presents with descriptions

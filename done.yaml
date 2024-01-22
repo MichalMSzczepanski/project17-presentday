@@ -1,2 +1,6 @@
 1 git:
   1 initialize .gitignore and exclude user-service in .gitignore
+  2 move presentday directory to same level as microservices
+2 config:
+  1 initialize docker-compose config including user-service and temporary postgres db
+  2 introduce required prod spring profile for system run
