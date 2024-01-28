@@ -4,3 +4,5 @@
 2 config:
   1 initialize docker-compose config including user-service and temporary postgres db
   2 introduce required prod spring profile for system run
+  3 introduce local and prod directories for setting up environments
+  4. create readme.md
