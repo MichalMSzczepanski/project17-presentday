@@ -4,8 +4,8 @@ services:
   user-service:
     image: user-service
     build:
-      context: ../../user-service/user-service
-      dockerfile: ../../user-service/user-service/Dockerfile
+      context: ../../user-service
+      dockerfile: ../../user-service/Dockerfile
     ports:
       - "8080:8080"
     depends_on:
