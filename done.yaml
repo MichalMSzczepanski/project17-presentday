@@ -1,9 +1,24 @@
+4 logic:
+3 semantics:
+2 config:
+  6 setup mongodb
+  5 update docker-compose due to user-service directory refactor
+  4 create readme.md
+  3 introduce local and prod directories for setting up environments
+  2 introduce required prod spring profile for system run
+  1 initialize docker-compose config including user-service and temporary postgres db
 1 git:
   1 initialize .gitignore and exclude user-service in .gitignore
   2 move presentday directory to same level as microservices
-2 config:
-  1 initialize docker-compose config including user-service and temporary postgres db
-  2 introduce required prod spring profile for system run
-  3 introduce local and prod directories for setting up environments
-  4 create readme.md
-  5 update docker-compose due to user-service directory refactor
+
+wishlist:
+  - notification-service
+  - present-service:
+      - entities:
+          - present
+  - occasion-service:
+      - entities:
+          - occasion
+          - person
+          -
+  -
