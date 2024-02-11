@@ -1,6 +1,7 @@
 4 logic:
 3 semantics:
 2 config:
+  7 working prod/ local for mongo/ postgres
   6 setup mongodb
   5 update docker-compose due to user-service directory refactor
   4 create readme.md

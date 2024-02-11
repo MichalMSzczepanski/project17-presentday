@@ -10,14 +10,29 @@ services:
       - "8081:8081"
     depends_on:
       - postgres
+      - mongo
     environment:
       SPRING_PROFILES_ACTIVE: prod
 
   postgres:
     image: postgres:latest
+    container_name: postgresqldb
+    ports:
+      - "5433:5432"
     environment:
       POSTGRES_DB: users
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: postgres_password
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
     ports:
-      - "5433:5432"
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo_password
+    volumes:
+      - ./mongo-data:/data/db

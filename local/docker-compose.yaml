@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  postgresql:
+  postgres:
     image: postgres:latest
     container_name: postgresqldb
     ports:
@@ -13,9 +13,9 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
 
-  mongodb:
+  mongo:
     image: mongo:latest
-    container_name: mongodb
+    container_name: mongo
     ports:
       - "27017:27017"
     environment:
