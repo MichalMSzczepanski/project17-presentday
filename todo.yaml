@@ -1,6 +1,7 @@
 1 git:
 2 config:
   - repo/ file for common properties (cloud server?)
+  - service discovery (eureka?)
 3 semantics:
 
 wishlist:
@@ -8,5 +9,17 @@ wishlist:
     - notification-service:
         - send emails
         - send sms
+    - gateway:
+        - jwt validation
+        - public vs private endpoints
     - present-service:
-        - save presents with descriptions
+        - people > occasions > presents
+        - events for sending reminders about upcoming occasions
+    - present-ideas:
+        - allegro
+        - ceneo
+  msc:
+    - aspects for checking authorization in headers
+    - kafka for events
+    - prometheus plus grafana for logs
+    - redis for caching
