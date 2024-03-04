@@ -1,13 +1,19 @@
 1 git:
 2 config:
+  - headers for debugging (x-transaction-id in each request and event)
   - repo/ file for common properties (cloud server?)
   - service discovery (eureka?)
+  - end to end tests when prod deployed:
+      - create and activate user with checking all events
 3 semantics:
 
 wishlist:
   microservices:
+    - architecture:
+        - pass in headers:
+            - transaction details
+            - logged in user details
     - notification-service:
-        - send emails
         - send sms
     - gateway:
         - jwt validation
