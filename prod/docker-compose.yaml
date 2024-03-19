@@ -21,9 +21,6 @@ services:
     build:
       context: ../../user-service
       dockerfile: ../user-service/Dockerfile
-#      todo: should not be using ports but common network does not work for comms between containers
-    ports:
-      - "8081:8081"
     depends_on:
       - postgres
       - mongo
