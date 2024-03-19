@@ -1,6 +1,7 @@
 4 logic:
 3 semantics:
 2 config:
+  10 add api gateway to prod
   9 add notification service to prod
   8 set up kafka for local development
   7 working prod/ local for mongo/ postgres
