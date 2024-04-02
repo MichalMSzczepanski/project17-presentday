@@ -1,5 +1,6 @@
 1 git:
 2 config:
+  - spring security in external microservice
   - headers for debugging (x-transaction-id in each request and event)
   - repo/ file for common properties (cloud server?)
   - service discovery (eureka?)

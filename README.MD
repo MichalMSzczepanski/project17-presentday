@@ -1,31 +1,51 @@
-# PRESENTDAY config
+# Presentday System Configuration
 
-Master config repository for presentday system. Currently, includes:
-- docker-compose for LOCAL deployment:
+Welcome to the master config repository for the Presentday system. This repository contains configuration files for two environments: Local and Prod.
+
+## Local Environment
+
+In the local environment, manual launching of specific microservices is required. These services include:
+
+  - api-gateway (8080)
+  - user-service (8081)
+  - notification-service (not exposed)
+
+Additionally, the Docker Compose setup includes the following services:
+
   - postgresql db (port 5433)
   - mongo db (port 27017)
   - kafka (port 9092)
-- docker-compose for PROD deployment:
-  - postgresql db (port 5433)
-  - mongo db (port 27017)
-  - kafka (port 9092)
-  - user-service (port 8081)
-  - notification-service (no port)
+
+## Prod Environment
+
+In the production environment, the Docker Compose setup includes the following services:
+
+- API Gateway (Port 8080)
+- User Service (Not exposed)
+- Notification Service (Not exposed)
+- PostgreSQL DB (Port 5433)
+- MongoDB (Port 27017)
+- Kafka (Port 9092)
+
+Furthermore, a Maven project named "property-library" has been introduced. This project includes configurations for Kafka topics, mail credentials, and JWT secrets. The library is embedded within the respective microservices in the JAR files.
 
 ## Prerequisites
 
-- docker-compose
+Before running the system, ensure you have Docker Compose installed.
 
 ## Running system
 
-### LOCAL env
-- cd /local
-- docker-compose up -d
+### Local Environment
+To run the system in the local environment, follow these steps:
+1. Navigate to the `/local` directory.
+2. Run the command `docker-compose up -d`
 
-please not: will launch spring boot apps in 'local' profile
+Please note that this will launch the Spring Boot applications in the 'local' profile. However, manual launching of microservices is still required.
 
-### PROD env
-- cd /prod
-- docker-compose up -d
+### Prod Environment
+To run the system in the production environment, follow these steps:
 
-please note: will launch spring boot apps in 'prod' profile
+1. Navigate to the `/prod` directory.
+2. Run the command `docker-compose up -d`
+
+Please note that this will launch the entire system in the 'prod' profile.
