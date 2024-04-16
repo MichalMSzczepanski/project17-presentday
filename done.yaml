@@ -1,6 +1,8 @@
 4 logic:
 3 semantics:
 2 config:
+  13 refactor postgresql service names and ports for unique connections
+  12 add present postgresql db in local and prod envs
   11 filter traffic to user-service through api-gateway
   10 add api gateway to prod
   9 add notification service to prod

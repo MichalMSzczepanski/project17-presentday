@@ -17,8 +17,7 @@ wishlist:
     - notification-service:
         - send sms
     - gateway:
-        - jwt validation
-        - public vs private endpoints
+        - lorem
     - present-service:
         - people > occasions > presents
         - events for sending reminders about upcoming occasions

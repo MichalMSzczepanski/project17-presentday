@@ -22,7 +22,7 @@ services:
       context: ../../user-service
       dockerfile: ../user-service/Dockerfile
     depends_on:
-      - postgres
+      - postgres-users
       - mongo
     environment:
       SPRING_PROFILES_ACTIVE: prod
@@ -41,16 +41,29 @@ services:
     networks:
       - backend
 
-  postgres:
+  postgres-users:
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_DB: users
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres_password
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres-data-users:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  postgres-presents:
+    image: postgres:latest
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: presents
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_password
+    volumes:
+      - ./postgres-data-presents:/var/lib/postgresql/data
     networks:
       - backend
 

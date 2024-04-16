@@ -27,7 +27,7 @@ In the production environment, the Docker Compose setup includes the following s
 - MongoDB (Port 27017)
 - Kafka (Port 9092)
 
-Furthermore, a Maven project named "property-library" has been introduced. This project includes configurations for Kafka topics, mail credentials, and JWT secrets. The library is embedded within the respective microservices in the JAR files.
+Furthermore, a hidden Maven project named "property-library" has been introduced. This project includes configurations for Kafka topics, mail credentials, and JWT secrets.
 
 ## Prerequisites
 
