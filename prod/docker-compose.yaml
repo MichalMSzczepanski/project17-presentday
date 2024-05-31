@@ -29,6 +29,18 @@ services:
     networks:
       - backend
 
+  present-service:
+    image: present-service
+    build:
+      context: ../../present-service
+      dockerfile: ../present-service/Dockerfile
+    depends_on:
+      - postgres-presents
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    networks:
+      - backend
+
   notification-service:
     image: notification-service
     build:
