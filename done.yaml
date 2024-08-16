@@ -1,6 +1,7 @@
 4 logic:
 3 semantics:
 2 config:
+  15 introduce redis
   14 introduce present-service
   13 refactor postgresql service names and ports for unique connections
   12 add present postgresql db in local and prod envs

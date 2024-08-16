@@ -7,7 +7,7 @@
   - end to end tests when prod deployed:
       - create and activate user with checking all events
 3 semantics:
-
+  - create e2e tests with javascript requests for whole process of managing reminders covering all endpoints
 wishlist:
   microservices:
     - architecture:
