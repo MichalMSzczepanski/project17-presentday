@@ -1,6 +1,7 @@
 4 logic:
 3 semantics:
 2 config:
+  17 update zookeper version for local and prod
   16 introduce e2e tests
   15 introduce redis
   14 introduce present-service

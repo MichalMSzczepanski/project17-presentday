@@ -6,7 +6,7 @@ async function runTests() {
         console.log('Making login request...');
         const loginResponse = await axios.post('http://localhost:8080/v1/login', {
             email: 'michal.m.szczepanski@gmail.com',
-            password: 'pass'
+            password: 'yourpassword'
         });
         const token = loginResponse.data; // Assuming the token is the direct response body
         console.log(`Login successful, received JWT token: ${token}`);
