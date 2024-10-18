@@ -8,7 +8,7 @@ async function runTests() {
             email: 'michal.m.szczepanski@gmail.com',
             password: 'yourpassword'
         });
-        const token = loginResponse.data; // Assuming the token is the direct response body
+        const token = loginResponse.data;
         console.log(`Login successful, received JWT token: ${token}`);
 
         // Call 2: Create a person
@@ -60,8 +60,15 @@ async function runTests() {
         const presentId = presentResponse.data.id;
         console.log(`Present created with ID: ${presentId}`);
 
-        // Warsaw timezone offset in milliseconds (UTC+2)
-        const warsawOffset = 2 * 60 * 60 * 1000;
+        // Utility function to round minutes to nearest valid interval (00, 15, 30, 45)
+        const roundMinutes = (date) => {
+            const minutes = date.getMinutes();
+            const roundedMinutes = Math.round(minutes / 15) * 15;
+            date.setMinutes(roundedMinutes);
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+            return date;
+        };
 
         // Call 5: Create a reminder
         console.log('Creating a reminder...');
@@ -79,12 +86,13 @@ async function runTests() {
         const reminderId = reminderResponse.data.id;
         console.log(`Reminder created with ID: ${reminderId}`);
 
-        // Calculate the date 10 minutes from now in Warsaw time
+        // Calculate the date for 10 minutes from now, then round to nearest valid interval
         const nowWarsaw = new Date();
-        const tenMinutesLaterWarsaw = new Date(nowWarsaw.getTime() + 10 * 60 * 1000 + warsawOffset).toISOString();
-        console.log(`Sending date (10 minutes from now in Warsaw): ${tenMinutesLaterWarsaw}`);
+        const tenMinutesLaterWarsaw = new Date(nowWarsaw.getTime() + 10 * 60 * 1000);
+        const roundedTenMinutesLater = roundMinutes(tenMinutesLaterWarsaw).toISOString();
+        console.log(`Setting date (10 minutes from now in Warsaw, rounded): ${roundedTenMinutesLater}`);
         const reminderDateResponse10m = await axios.post('http://localhost:8080/v1/present/reminderdate', {
-            date: tenMinutesLaterWarsaw,
+            date: roundedTenMinutesLater,
             reminderId: reminderId
         }, {
             headers: {
@@ -93,13 +101,14 @@ async function runTests() {
             }
         });
         const reminderDateId10m = reminderDateResponse10m.data.id;
-        console.log(`Reminder date created for 10 minutes from now, ID: ${reminderDateId10m}`);
+        console.log(`Reminder date created for rounded 10 minutes from now, ID: ${reminderDateId10m}`);
 
-        // Calculate the date 2 hours from now in Warsaw time
-        const twoHoursLaterWarsaw = new Date(nowWarsaw.getTime() + 2 * 60 * 60 * 1000 + warsawOffset).toISOString();
-        console.log(`Sending date (2 hours from now in Warsaw): ${twoHoursLaterWarsaw}`);
+        // Calculate the date for 2 hours from now, then round to nearest valid interval
+        const twoHoursLaterWarsaw = new Date(nowWarsaw.getTime() + 2 * 60 * 60 * 1000);
+        const roundedTwoHoursLater = roundMinutes(twoHoursLaterWarsaw).toISOString();
+        console.log(`Sending date (2 hours from now in Warsaw, rounded): ${roundedTwoHoursLater}`);
         const reminderDateResponse2h = await axios.post('http://localhost:8080/v1/present/reminderdate', {
-            date: twoHoursLaterWarsaw,
+            date: roundedTwoHoursLater,
             reminderId: reminderId
         }, {
             headers: {
@@ -108,13 +117,11 @@ async function runTests() {
             }
         });
         const reminderDateId2h = reminderDateResponse2h.data.id;
-        console.log(`Reminder date created for 2 hours from now, ID: ${reminderDateId2h}`);
+        console.log(`Reminder date created for rounded 2 hours from now, ID: ${reminderDateId2h}`);
 
         // Call 7: Trigger reminders for the next 24 hours
         console.log('Triggering reminders for the next 24 hours...');
-        await axios.post('http://localhost:8080/v1/present/reminderdatecache/getReminderDateCachesForNext24h', {
-            reminderCreateDto: {} // Assuming an empty body or customize as needed
-        }, {
+        await axios.post('http://localhost:8080/v1/present/reminderdatecache/getReminderDateCachesForNext24h', {}, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -124,9 +131,7 @@ async function runTests() {
 
         // Call 8: Check upcoming reminders
         console.log('Checking upcoming reminders...');
-        await axios.post('http://localhost:8080/v1/present/reminderdatecache/checkUpcomingReminders', {
-            reminderCreateDto: {} // Assuming an empty body or customize as needed
-        }, {
+        await axios.post('http://localhost:8080/v1/present/reminderdatecache/checkUpcomingReminders', {}, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
