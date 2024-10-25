@@ -62,17 +62,15 @@ services:
     volumes:
       - ./redis-data:/data
 
-
   localstack:
     image: localstack/localstack:latest
     container_name: localstack
     ports:
-      - "4566:4566"  # Main LocalStack port for all services
-      - "4571:4571"
+      - "4566:4566"
     environment:
-      - SERVICES=s3   # Only enable the S3 service
+      - SERVICES=s3
       - DEFAULT_REGION=us-east-1
       - EDGE_PORT=4566
-      - DATA_DIR=/tmp/localstack/data
     volumes:
-      - "./localstack-data:/tmp/localstack"
+      - ./localstack-temp:/var/localstack
+
