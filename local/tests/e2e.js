@@ -88,11 +88,18 @@ async function runTests() {
 
         // Calculate the date for 10 minutes from now, then round to nearest valid interval
         const nowWarsaw = new Date();
-        const tenMinutesLaterWarsaw = new Date(nowWarsaw.getTime() + 10 * 60 * 1000);
-        const roundedTenMinutesLater = roundMinutes(tenMinutesLaterWarsaw).toISOString();
-        console.log(`Setting date (10 minutes from now in Warsaw, rounded): ${roundedTenMinutesLater}`);
+
+        // Set the date to the next day
+        const nextDayWarsaw = new Date(nowWarsaw);
+        nextDayWarsaw.setDate(nowWarsaw.getDate() + 1);  // Set to the next day
+
+        // Round minutes to nearest 15-minute interval
+        let minutes = nextDayWarsaw.getMinutes();
+        let roundedMinutes = Math.ceil(minutes / 15) * 15;
+        nextDayWarsaw.setMinutes(roundedMinutes);
+        console.log(`Setting date (10 minutes from now in Warsaw, rounded): ${nextDayWarsaw}`);
         const reminderDateResponse10m = await axios.post('http://localhost:8080/v1/present/reminderdate', {
-            date: roundedTenMinutesLater,
+            date: nextDayWarsaw,
             reminderId: reminderId
         }, {
             headers: {

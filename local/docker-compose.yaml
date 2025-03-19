@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres-users:
-    image: postgres:latest
+    image: postgres:16
     ports:
       - "5433:5432"
     environment:
@@ -13,7 +13,7 @@ services:
       - ./postgres-data-users:/var/lib/postgresql/data
 
   postgres-presents:
-    image: postgres:latest
+    image: postgres:16
     ports:
       - "5434:5432"
     environment:
